@@ -2,7 +2,9 @@ package RockApi.com;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 @RestController
@@ -29,6 +31,29 @@ public class APIEndPoints {
         public User findUserById(@RequestParam("id")Integer id){
         User user = Db.get(id);
         return user;
+      }
+      @GetMapping("/getUserBYCountry/{country}")
+      public List<User> getInfoUser(@PathVariable("country")String country){
+        List<User> anslist = new ArrayList<>();
+        for(User users: Db.values()){
+            if(users.getCountry().equals(country)){
+                anslist.add(users);
+            }
+        }
+            return anslist;
+      }
+
+      @DeleteMapping("/deleteUser/{name}")
+    public String deleteUser(@PathVariable("name")String name ){
+        for(int key:Db.keySet())
+        {
+            User user=Db.get(key);
+            if(user.getName().equals(name)){
+                Db.remove(key);
+            }
+        }
+        return "user with the name "+ name+" have been removed";
+
       }
     }
 

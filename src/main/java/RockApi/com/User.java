@@ -9,19 +9,31 @@ public class User {
 
     private String mobileNumber;
 
+    private String country;
+
     private String emailId;
 
     public User(){
 
     }
 
-    public User(int id ,String name, int age, String mobileNumber, String emailId) {
-        this.id=id;
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public User(int id, String name, int age, String mobileNumber, String country, String emailId) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.mobileNumber = mobileNumber;
+        this.country = country;
         this.emailId = emailId;
     }
+
     public int getId() {
         return id;
     }
