@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 
 @RestController
@@ -14,6 +15,7 @@ public class APIEndPoints {
     @GetMapping("/getWeatherDetails")
     public String getWeatherInfo()
     {
+
         return "todays weather is rainy and windy";
     }
     @GetMapping("/calculateSum")
@@ -55,5 +57,17 @@ public class APIEndPoints {
         return "user with the name "+ name+" have been removed";
 
       }
+      @GetMapping("/getuserByAge/{age}")
+    public List<User> getUserByAge(@PathVariable("age")Integer age){
+       List<User> res = new ArrayList<>();
+       for(User ans:Db.values()){
+           if(Objects.equals(ans.getAge(), age)){
+               res.add(ans);
+           }
+       }
+            return res;
+      }
+
+
     }
 
